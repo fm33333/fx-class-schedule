@@ -1,0 +1,21 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver  # MySQL
+    # mysql????
+    # url: jdbc:mysql://localhost:3306/puzzle_day?serverTimezone=GMT%2B0&&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/class_schedule?serverTimezone=GMT%2B8&&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: classschedule
+    password: 123456
+
+# mybatis配置
+mybatis:
+  configuration: # mybatis-plus配置控制台打印完整带参数SQL语句
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true    # 驼峰转换 从数据库列名到Java属性驼峰命名的类似映射
+  #  mapper-locations: classpath:/mapper/*.xml   # 引入mybatis-plus-boot-starter包，需要配置路径
+  type-aliases-package: com.example.classschedule.data.entity
+  mapperLocations: classpath:mapper/*.xml
