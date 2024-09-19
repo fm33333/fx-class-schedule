@@ -42,4 +42,15 @@ public interface ClassScheduleMapper {
      * @return
      */
     List<ClassScheduleEntity> getByClassId(@Param("classId") String classId);
+
+    /**
+     * 获取课表实体
+     * @param singleDoubleWeek
+     * @param classId
+     * @param classHourId
+     * @return
+     */
+    ClassScheduleEntity get(@Param("singleDoubleWeek") Integer singleDoubleWeek,
+                            @Param("classId") Integer classId,
+                            @Param("classHourId") Integer classHourId);
 }

@@ -17,4 +17,12 @@ public interface ClassMapper {
     List<ClassEntity> getAll();
 
     ClassEntity getById(@Param("id") String id);
+
+    /**
+     * 根据年级、班级获取实体
+     * @param gradeNum
+     * @param classNum
+     * @return
+     */
+    ClassEntity getByGradeClass(@Param("gradeNum") String gradeNum, @Param("classNum") String classNum);
 }

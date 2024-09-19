@@ -7,6 +7,7 @@ import com.example.classschedule.result.ResultCode;
 import com.example.classschedule.result.ResultCodeEnum;
 import com.example.classschedule.service.*;
 import com.example.classschedule.util.StringUtil;
+import com.example.classschedule.vo.ClassScheduleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,7 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
      * @return
      */
     @Override
-    public List<ClassScheduleEntity> getChangeScheduleList(Integer classScheduleId) {
+    public List<ClassScheduleVO> getChangeScheduleList(Integer classScheduleId) {
         log.info("getChangeScheduleList|classScheduleId: {}", classScheduleId);
         // 查出待换的课信息
         ClassScheduleEntity waitToChange = classScheduleMapper.getById(classScheduleId);
@@ -62,12 +63,11 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
 
         // 查出该节课时的所有课表信息（后面用于判断被换课的老师在这一节课时中是否有课，有课则换不了）
         List<ClassScheduleEntity> currentClassHourList = classScheduleMapper.getByClassHourId(classHourId);
-//        log.info("getChangeScheduleList | Current classHourList: {}", currentClassHourList);
 
         // 查出该班级的所有课表信息（换课肯定是本班内换吧）
         List<ClassScheduleEntity> allClassScheduleList = classScheduleMapper.getByClassId(classId);
         // 遍历该班级课表，查找可换的课
-        List<ClassScheduleEntity> resultList = new ArrayList<>();   // 可换的课列表
+        List<ClassScheduleVO> resultList = new ArrayList<>();   // 可换的课列表
         Iterator<ClassScheduleEntity> iterator = allClassScheduleList.iterator();
         while (iterator.hasNext()) {
             ClassScheduleEntity next = iterator.next();
@@ -98,9 +98,11 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
                     "第" + (Integer.parseInt(next.getClassHourId()) % 7) + "节"
             );
             log.info("getChangeScheduleList | classHourId: {}", next.getClassHourId());
-            resultList.add(next);
+            ClassScheduleVO resultVO = new ClassScheduleVO(next.getSingleDoubleWeek(), next.getClassId(),
+                    next.getClassHourId(), next.getTeacherId(), next.getSubjectId());
+            resultList.add(resultVO);
         }
-        // TODO:
+
         return resultList;
     }
 
@@ -150,6 +152,11 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
             classScheduleMapper.update(next);
         }
         return ResultCodeEnum.SUCCESS;
+    }
+
+    @Override
+    public ClassScheduleEntity get(Integer singleDoubleWeek, Integer classId, Integer classHourId) {
+        return classScheduleMapper.get(singleDoubleWeek, classId, classHourId);
     }
 
 

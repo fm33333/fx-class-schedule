@@ -11,4 +11,6 @@ public interface ClassService {
     List<ClassEntity> getAll();
 
     ClassEntity getById(String id);
+
+    ClassEntity get(String gradeNum, String classNum);
 }

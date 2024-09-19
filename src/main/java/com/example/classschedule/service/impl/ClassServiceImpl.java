@@ -38,4 +38,9 @@ public class ClassServiceImpl implements ClassService {
     public ClassEntity getById(String id) {
         return classMapper.getById(id);
     }
+
+    @Override
+    public ClassEntity get(String gradeNum, String classNum) {
+        return classMapper.getByGradeClass(gradeNum, classNum);
+    }
 }

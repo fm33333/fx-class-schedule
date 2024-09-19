@@ -46,4 +46,13 @@
         where deleted = 0
           and class_id = #{classId}
     </select>
+
+    <select id="get" resultType="com.example.classschedule.entity.ClassScheduleEntity">
+        select *
+        from class_schedule
+        where deleted = 0
+            and single_double_week = #{singleDoubleWeek}
+            and class_id = #{classId}
+            and class_hour_id = #{classHourId}
+    </select>
 </mapper>

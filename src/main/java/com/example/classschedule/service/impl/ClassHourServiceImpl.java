@@ -26,4 +26,15 @@ public class ClassHourServiceImpl implements ClassHourService {
         log.info("ClassService|getAll");
         return classHourMapper.getAll();
     }
+
+    /**
+     * 根据周和节数查询实体
+     * @param weekNum
+     * @param scheduleNum
+     * @return
+     */
+    @Override
+    public ClassHourEntity get(String weekNum, String scheduleNum) {
+        return classHourMapper.getByWeekSchedule(weekNum, scheduleNum);
+    }
 }

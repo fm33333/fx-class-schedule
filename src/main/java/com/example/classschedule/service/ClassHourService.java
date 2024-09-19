@@ -9,4 +9,6 @@ import java.util.List;
 @Service
 public interface ClassHourService {
     List<ClassHourEntity> getAll();
+
+    ClassHourEntity get(String weekNum, String scheduleNum);
 }

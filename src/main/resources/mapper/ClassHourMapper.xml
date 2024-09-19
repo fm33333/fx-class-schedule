@@ -11,4 +11,12 @@
         from class_hour
         where deleted = 0
     </select>
+
+    <select id="getByWeekSchedule" resultType="com.example.classschedule.entity.ClassHourEntity">
+        select *
+        from class_hour
+        where deleted = 0
+            and week = #{weekNum}
+            and class_number = #{scheduleNum}
+    </select>
 </mapper>

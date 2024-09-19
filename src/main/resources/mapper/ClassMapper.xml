@@ -18,4 +18,12 @@
         where deleted = 0
             and id = #{id}
     </select>
+
+    <select id="getByGradeClass" resultType="com.example.classschedule.entity.ClassEntity">
+        select *
+        from class
+        where deleted = 0
+            and grade = #{gradeNum}
+            and class_num = #{classNum}
+    </select>
 </mapper>
