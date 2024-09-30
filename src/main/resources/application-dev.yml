@@ -19,3 +19,6 @@ mybatis:
   #  mapper-locations: classpath:/mapper/*.xml   # 引入mybatis-plus-boot-starter包，需要配置路径
   type-aliases-package: com.example.classschedule.data.entity
   mapperLocations: classpath:mapper/*.xml
+
+fx:
+  profile: C:/Users/86181/Desktop/study/福新小学/class-schedule/doc

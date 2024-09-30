@@ -9,7 +9,7 @@ import com.example.classschedule.result.AjaxResult;
 import com.example.classschedule.util.Convert;
 import com.example.classschedule.exception.UtilException;
 import com.example.classschedule.util.DateUtils;
-import com.example.classschedule.util.DictUtils;
+//import com.example.classschedule.util.DictUtils;
 import com.example.classschedule.util.StringUtils;
 import com.example.classschedule.util.file.FileTypeUtils;
 import com.example.classschedule.util.file.FileUtils;
@@ -427,7 +427,7 @@ public class ExcelUtil<T>
                         }
                         else if (StringUtils.isNotEmpty(attr.dictType()))
                         {
-                            val = reverseDictByExp(Convert.toStr(val), attr.dictType(), attr.separator());
+//                            val = reverseDictByExp(Convert.toStr(val), attr.dictType(), attr.separator());
                         }
                         else if (!attr.handler().equals(ExcelHandlerAdapter.class))
                         {
@@ -1009,12 +1009,12 @@ public class ExcelUtil<T>
                 }
                 else if (StringUtils.isNotEmpty(dictType) && StringUtils.isNotNull(value))
                 {
-                    if (!sysDictMap.containsKey(dictType + value))
-                    {
-                        String lable = convertDictByExp(Convert.toStr(value), dictType, separator);
-                        sysDictMap.put(dictType + value, lable);
-                    }
-                    cell.setCellValue(sysDictMap.get(dictType + value));
+//                    if (!sysDictMap.containsKey(dictType + value))
+//                    {
+//                        String lable = convertDictByExp(Convert.toStr(value), dictType, separator);
+//                        sysDictMap.put(dictType + value, lable);
+//                    }
+//                    cell.setCellValue(sysDictMap.get(dictType + value));
                 }
                 else if (value instanceof BigDecimal && -1 != attr.scale())
                 {
@@ -1210,10 +1210,10 @@ public class ExcelUtil<T>
      * @param separator 分隔符
      * @return 字典标签
      */
-    public static String convertDictByExp(String dictValue, String dictType, String separator)
-    {
-        return DictUtils.getDictLabel(dictType, dictValue, separator);
-    }
+//    public static String convertDictByExp(String dictValue, String dictType, String separator)
+//    {
+//        return DictUtils.getDictLabel(dictType, dictValue, separator);
+//    }
 
     /**
      * 反向解析值字典值
@@ -1223,10 +1223,10 @@ public class ExcelUtil<T>
      * @param separator 分隔符
      * @return 字典值
      */
-    public static String reverseDictByExp(String dictLabel, String dictType, String separator)
-    {
-        return DictUtils.getDictValue(dictType, dictLabel, separator);
-    }
+//    public static String reverseDictByExp(String dictLabel, String dictType, String separator)
+//    {
+//        return DictUtils.getDictValue(dictType, dictLabel, separator);
+//    }
 
     /**
      * 数据处理器

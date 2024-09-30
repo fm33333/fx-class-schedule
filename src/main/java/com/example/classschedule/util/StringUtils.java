@@ -1,7 +1,6 @@
 package com.example.classschedule.util;
 
-import com.ruoyi.common.constant.Constants;
-import com.ruoyi.common.core.text.StrFormatter;
+import com.example.classschedule.constant.Constants;
 import org.springframework.util.AntPathMatcher;
 
 import java.util.*;

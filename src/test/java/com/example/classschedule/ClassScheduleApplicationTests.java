@@ -10,6 +10,7 @@ import com.example.classschedule.mapper.SubjectMapper;
 import com.example.classschedule.mapper.TeacherMapper;
 import com.example.classschedule.service.ClassScheduleService;
 import com.example.classschedule.service.impl.ClassScheduleServiceImpl;
+import com.example.classschedule.util.poi.ExcelUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -69,4 +70,11 @@ class ClassScheduleApplicationTests {
         System.out.println(isExist);
     }
 
+
+    @Test
+    void test3() {
+        List<ClassScheduleEntity> classScheduleEntityList = classScheduleService.getAll();
+        ExcelUtil<ClassScheduleEntity> excelUtil = new ExcelUtil<ClassScheduleEntity>(ClassScheduleEntity.class);
+        excelUtil.exportExcel(classScheduleEntityList, "课表信息");
+    }
 }

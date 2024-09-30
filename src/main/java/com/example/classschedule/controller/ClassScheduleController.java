@@ -5,12 +5,14 @@ import com.example.classschedule.entity.ClassEntity;
 import com.example.classschedule.entity.ClassHourEntity;
 import com.example.classschedule.entity.ClassScheduleEntity;
 import com.example.classschedule.entity.TeacherEntity;
+import com.example.classschedule.result.AjaxResult;
 import com.example.classschedule.result.Empty;
 import com.example.classschedule.result.R;
 import com.example.classschedule.service.ClassHourService;
 import com.example.classschedule.service.ClassScheduleService;
 import com.example.classschedule.service.ClassService;
 import com.example.classschedule.service.TeacherService;
+import com.example.classschedule.util.poi.ExcelUtil;
 import com.example.classschedule.vo.ClassScheduleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -79,4 +81,15 @@ public class ClassScheduleController {
 //    public R<Empty> update() {
 //        return R.ok(classScheduleService.update());
 //    }
+
+    /**
+     * 导出数据
+     * @return
+     */
+    @PostMapping("/export")
+    public AjaxResult export() {
+        List<ClassScheduleEntity> classScheduleEntityList = classScheduleService.getAll();
+        ExcelUtil<ClassScheduleEntity> excelUtil = new ExcelUtil<ClassScheduleEntity>(ClassScheduleEntity.class);
+        return AjaxResult.success(excelUtil.exportExcel(classScheduleEntityList, "课表信息"));
+    }
 }

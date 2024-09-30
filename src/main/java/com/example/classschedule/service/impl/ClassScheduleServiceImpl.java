@@ -32,7 +32,7 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
     ClassHourService classHourService;
 
     /**
-     * 获取所有老师信息
+     * 获取所有课表信息
      * @return
      */
     @Override

@@ -1,7 +1,8 @@
 package com.example.classschedule.result;
 
-import com.ruoyi.common.constant.HttpStatus;
-import com.ruoyi.common.utils.StringUtils;
+
+import com.example.classschedule.constant.HttpStatus;
+import com.example.classschedule.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Objects;
