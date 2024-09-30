@@ -21,4 +21,5 @@ mybatis:
   mapperLocations: classpath:mapper/*.xml
 
 fx:
+  # 导入、导出等文件路径
   profile: C:/Users/86181/Desktop/study/福新小学/class-schedule/doc

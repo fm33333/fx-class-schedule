@@ -70,7 +70,11 @@ public class ClassScheduleController {
 //        log.info("getChangeList2 | classEntity: {}", classEntity);
 //        log.info("getChangeList2 | classHourEntity: {}", classHourEntity);
 //        log.info("getChangeList2 | classScheduleEntity: {}", classScheduleEntity);
-        return R.ok(classScheduleService.getChangeScheduleList(classScheduleEntity.getId()));
+        ExcelUtil<ClassScheduleVO> excelUtil = new ExcelUtil<ClassScheduleVO>(ClassScheduleVO.class);
+        List<ClassScheduleVO> resultList = classScheduleService.getChangeScheduleList(classScheduleEntity.getId());
+        // 导出结果
+        excelUtil.exportExcel(resultList, "课表信息");
+        return R.ok(resultList);
     }
 
     /**
