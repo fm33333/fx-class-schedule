@@ -1,27 +1,26 @@
 package com.example.classschedule.controller;
 
-import com.example.classschedule.dto.ClassScheduleDTO;
-import com.example.classschedule.entity.ClassEntity;
-import com.example.classschedule.entity.ClassHourEntity;
-import com.example.classschedule.entity.ClassScheduleEntity;
-import com.example.classschedule.entity.TeacherEntity;
-import com.example.classschedule.result.AjaxResult;
-import com.example.classschedule.result.Empty;
-import com.example.classschedule.result.R;
+import com.example.classschedule.data.dto.ClassScheduleDTO;
+import com.example.classschedule.data.entity.ClassEntity;
+import com.example.classschedule.data.entity.ClassHourEntity;
+import com.example.classschedule.data.entity.ClassScheduleEntity;
+import com.example.classschedule.data.result.AjaxResult;
+import com.example.classschedule.data.result.R;
 import com.example.classschedule.service.ClassHourService;
 import com.example.classschedule.service.ClassScheduleService;
 import com.example.classschedule.service.ClassService;
-import com.example.classschedule.service.TeacherService;
 import com.example.classschedule.util.poi.ExcelUtil;
-import com.example.classschedule.vo.ClassScheduleVO;
+import com.example.classschedule.data.vo.ClassScheduleVO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Slf4j
+@Tag(name = "课表管理")
 @RestController
 @RequestMapping("/class-schedule")
 public class ClassScheduleController {
@@ -37,6 +36,7 @@ public class ClassScheduleController {
      * 获取所有课表信息
      * @return
      */
+//    @Operation(summary  = "获取课表", method = "GET")
     @GetMapping("/getAll")
     public R<List<ClassScheduleEntity>> getAll() {
         return R.ok(classScheduleService.getAll());
@@ -48,6 +48,7 @@ public class ClassScheduleController {
      * @param classScheduleId 课表id
      * @return
      */
+//    @Operation(summary  = "根据id获取可换课列表", method = "POST")
     @PostMapping("/getChangeList")
     public R<List<ClassScheduleVO>> getChangeList(@RequestParam Integer classScheduleId) {
         return R.ok(classScheduleService.getChangeScheduleList(classScheduleId));
@@ -58,6 +59,7 @@ public class ClassScheduleController {
      * @param classScheduleDTO 课表信息
      * @return
      */
+//    @Operation(summary  = "根据课信息获取可换课列表", method = "POST")
     @PostMapping("/getChangeList2")
     public R<List<ClassScheduleVO>> getChangeList2(@RequestBody ClassScheduleDTO classScheduleDTO) {
         // 分别查询出对应的classId和classHourId，再根据classId和classHourId查询到对应的classScheduleId
@@ -90,6 +92,7 @@ public class ClassScheduleController {
      * 导出数据
      * @return
      */
+//    @Operation(summary  = "导出课表信息", method = "POST")
     @PostMapping("/export")
     public AjaxResult export() {
         List<ClassScheduleEntity> classScheduleEntityList = classScheduleService.getAll();

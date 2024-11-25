@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.classschedule.mapper.ClassHourMapper">
-    <resultMap id="default" type="com.example.classschedule.entity.ClassHourEntity"/>
+    <resultMap id="default" type="com.example.classschedule.data.entity.ClassHourEntity"/>
 
     <select id="getAll" resultMap="default">
         select *
@@ -12,7 +12,7 @@
         where deleted = 0
     </select>
 
-    <select id="getByWeekSchedule" resultType="com.example.classschedule.entity.ClassHourEntity">
+    <select id="getByWeekSchedule" resultType="com.example.classschedule.data.entity.ClassHourEntity">
         select *
         from class_hour
         where deleted = 0

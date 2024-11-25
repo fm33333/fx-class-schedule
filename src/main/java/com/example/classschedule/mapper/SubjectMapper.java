@@ -1,6 +1,6 @@
 package com.example.classschedule.mapper;
 
-import com.example.classschedule.entity.SubjectEntity;
+import com.example.classschedule.data.entity.SubjectEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,4 +1,4 @@
-package com.example.classschedule.entity;
+package com.example.classschedule.data.entity;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

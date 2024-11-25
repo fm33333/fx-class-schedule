@@ -5,7 +5,7 @@ import com.example.classschedule.annotation.Excel.ColumnType;
 import com.example.classschedule.annotation.Excel.Type;
 import com.example.classschedule.annotation.Excels;
 import com.example.classschedule.config.RuoYiConfig;
-import com.example.classschedule.result.AjaxResult;
+import com.example.classschedule.data.result.AjaxResult;
 import com.example.classschedule.util.Convert;
 import com.example.classschedule.exception.UtilException;
 import com.example.classschedule.util.DateUtils;

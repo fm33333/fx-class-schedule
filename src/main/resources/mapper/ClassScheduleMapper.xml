@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.classschedule.mapper.ClassScheduleMapper">
-    <resultMap id="default" type="com.example.classschedule.entity.ClassScheduleEntity"/>
+    <resultMap id="default" type="com.example.classschedule.data.entity.ClassScheduleEntity"/>
     <update id="update">
         update class_schedule
         <set>
@@ -26,28 +26,28 @@
         where deleted = 0
     </select>
 
-    <select id="getById" resultType="com.example.classschedule.entity.ClassScheduleEntity">
+    <select id="getById" resultType="com.example.classschedule.data.entity.ClassScheduleEntity">
         select *
         from class_schedule
         where deleted = 0
             and id = #{classScheduleId}
     </select>
 
-    <select id="getByClassHourId" resultType="com.example.classschedule.entity.ClassScheduleEntity">
+    <select id="getByClassHourId" resultType="com.example.classschedule.data.entity.ClassScheduleEntity">
         select *
         from class_schedule
         where deleted = 0
             and class_hour_id = #{classHourId}
     </select>
 
-    <select id="getByClassId" resultType="com.example.classschedule.entity.ClassScheduleEntity">
+    <select id="getByClassId" resultType="com.example.classschedule.data.entity.ClassScheduleEntity">
         select *
         from class_schedule
         where deleted = 0
           and class_id = #{classId}
     </select>
 
-    <select id="get" resultType="com.example.classschedule.entity.ClassScheduleEntity">
+    <select id="get" resultType="com.example.classschedule.data.entity.ClassScheduleEntity">
         select *
         from class_schedule
         where deleted = 0

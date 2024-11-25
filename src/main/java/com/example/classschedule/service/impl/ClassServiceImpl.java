@@ -1,11 +1,8 @@
 package com.example.classschedule.service.impl;
 
-import com.example.classschedule.entity.ClassEntity;
-import com.example.classschedule.entity.TeacherEntity;
+import com.example.classschedule.data.entity.ClassEntity;
 import com.example.classschedule.mapper.ClassMapper;
-import com.example.classschedule.mapper.TeacherMapper;
 import com.example.classschedule.service.ClassService;
-import com.example.classschedule.service.TeacherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.example.classschedule.result;
+package com.example.classschedule.data.result;
 
 
 import com.example.classschedule.constant.HttpStatus;

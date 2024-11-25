@@ -1,7 +1,6 @@
 package com.example.classschedule.service.impl;
 
-import com.example.classschedule.entity.ClassEntity;
-import com.example.classschedule.entity.ClassHourEntity;
+import com.example.classschedule.data.entity.ClassHourEntity;
 import com.example.classschedule.mapper.ClassHourMapper;
 import com.example.classschedule.service.ClassHourService;
 import lombok.extern.slf4j.Slf4j;

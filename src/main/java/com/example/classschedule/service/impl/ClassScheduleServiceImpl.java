@@ -1,13 +1,15 @@
 package com.example.classschedule.service.impl;
 
-import com.alibaba.druid.util.StringUtils;
-import com.example.classschedule.entity.*;
+import com.example.classschedule.data.entity.ClassEntity;
+import com.example.classschedule.data.entity.ClassScheduleEntity;
+import com.example.classschedule.data.entity.SubjectEntity;
+import com.example.classschedule.data.entity.TeacherEntity;
 import com.example.classschedule.mapper.ClassScheduleMapper;
-import com.example.classschedule.result.ResultCode;
-import com.example.classschedule.result.ResultCodeEnum;
+import com.example.classschedule.data.result.ResultCode;
+import com.example.classschedule.data.result.ResultCodeEnum;
 import com.example.classschedule.service.*;
 import com.example.classschedule.util.StringUtil;
-import com.example.classschedule.vo.ClassScheduleVO;
+import com.example.classschedule.data.vo.ClassScheduleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,11 +56,11 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
         log.info("getChangeScheduleList|classScheduleId: {}", classScheduleId);
         // 查出待换的课信息
         ClassScheduleEntity waitToChange = classScheduleMapper.getById(classScheduleId);
-        Integer singleDoubleWeek = waitToChange.getSingleDoubleWeek();  // 单双周（0否，1单周，2双周）
+//        Integer singleDoubleWeek = waitToChange.getSingleDoubleWeek();  // 单双周（0否，1单周，2双周）
         String classId = waitToChange.getClassId();     // 班级
         String classHourId = waitToChange.getClassHourId(); // 课时（周几第几节）
         String teacherId = waitToChange.getTeacherId(); // 老师
-        String subjectId = waitToChange.getSubjectId(); // 科目
+//        String subjectId = waitToChange.getSubjectId(); // 科目
         log.info("getChangeScheduleList | waitToChange: {}", waitToChange);
 
         // 查出该节课时的所有课表信息（后面用于判断被换课的老师在这一节课时中是否有课，有课则换不了）

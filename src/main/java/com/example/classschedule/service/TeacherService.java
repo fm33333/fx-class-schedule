@@ -1,6 +1,6 @@
 package com.example.classschedule.service;
 
-import com.example.classschedule.entity.TeacherEntity;
+import com.example.classschedule.data.entity.TeacherEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

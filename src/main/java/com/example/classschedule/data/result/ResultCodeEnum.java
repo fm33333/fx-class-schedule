@@ -1,4 +1,4 @@
-package com.example.classschedule.result;
+package com.example.classschedule.data.result;
 
 /**
  * 系统错误码

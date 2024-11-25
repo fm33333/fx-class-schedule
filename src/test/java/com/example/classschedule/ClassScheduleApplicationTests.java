@@ -1,14 +1,10 @@
 package com.example.classschedule;
 
-import com.example.classschedule.entity.ClassEntity;
-import com.example.classschedule.entity.ClassScheduleEntity;
-import com.example.classschedule.entity.SubjectEntity;
-import com.example.classschedule.entity.TeacherEntity;
+import com.example.classschedule.data.entity.ClassScheduleEntity;
 import com.example.classschedule.mapper.ClassMapper;
 import com.example.classschedule.mapper.ClassScheduleMapper;
 import com.example.classschedule.mapper.SubjectMapper;
 import com.example.classschedule.mapper.TeacherMapper;
-import com.example.classschedule.service.ClassScheduleService;
 import com.example.classschedule.service.impl.ClassScheduleServiceImpl;
 import com.example.classschedule.util.poi.ExcelUtil;
 import org.junit.jupiter.api.Test;
@@ -70,11 +66,15 @@ class ClassScheduleApplicationTests {
         System.out.println(isExist);
     }
 
-
     @Test
     void test3() {
         List<ClassScheduleEntity> classScheduleEntityList = classScheduleService.getAll();
         ExcelUtil<ClassScheduleEntity> excelUtil = new ExcelUtil<ClassScheduleEntity>(ClassScheduleEntity.class);
         excelUtil.exportExcel(classScheduleEntityList, "课表信息");
+    }
+
+    @Test
+    void test4() {
+
     }
 }
