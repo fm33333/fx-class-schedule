@@ -10,19 +10,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ClassScheduleDTO {
 
-//    @Schema(description = "年级")
+    @Schema(description = "年级")
     private String gradeNum;
 
-//    @Schema(description = "班级")
+    @Schema(description = "班级")
     private String classNum;
 
-//    @Schema(description = "单双周（0：否，1：单，2：双）")
+    @Schema(description = "单双周（0：否，1：单，2：双）")
     private Integer singleDoubleWeek;
 
-//    @Schema(description = "周")
+    @Schema(description = "周")
     private String weekNum;
 
-//    @Schema(description = "节")
+    @Schema(description = "节")
     private String scheduleNum;
 
 
