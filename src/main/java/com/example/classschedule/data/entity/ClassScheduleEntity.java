@@ -1,10 +1,7 @@
 package com.example.classschedule.data.entity;
 
 import com.example.classschedule.annotation.Excel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * 课表实体类
@@ -12,6 +9,7 @@ import lombok.NoArgsConstructor;
  * @date 2024/9/5
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)

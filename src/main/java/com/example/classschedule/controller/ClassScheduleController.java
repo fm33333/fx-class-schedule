@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class ClassScheduleController {
         ExcelUtil<ClassScheduleVO> excelUtil = new ExcelUtil<ClassScheduleVO>(ClassScheduleVO.class);
         List<ClassScheduleVO> resultList = classScheduleService.getChangeScheduleList(classScheduleEntity.getId());
         // 导出结果
-        excelUtil.exportExcel(resultList, "课表信息");
+//        excelUtil.exportExcel(resultList, "课表信息");
         return R.ok(resultList);
     }
 
@@ -94,9 +95,15 @@ public class ClassScheduleController {
      */
     @Operation(summary  = "导出课表信息", method = "POST")
     @PostMapping("/export")
-    public AjaxResult export() {
+    public AjaxResult exportData() {
         List<ClassScheduleEntity> classScheduleEntityList = classScheduleService.getAll();
         ExcelUtil<ClassScheduleEntity> excelUtil = new ExcelUtil<ClassScheduleEntity>(ClassScheduleEntity.class);
         return AjaxResult.success(excelUtil.exportExcel(classScheduleEntityList, "课表信息"));
+    }
+
+    @Operation(summary  = "导入课表信息", method = "POST")
+    @PostMapping("/import")
+    public R importData(@RequestPart(value = "file",required = true) MultipartFile file) {
+        return classScheduleService.importData(file);
     }
 }

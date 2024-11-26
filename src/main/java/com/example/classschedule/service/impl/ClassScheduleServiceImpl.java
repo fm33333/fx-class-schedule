@@ -1,22 +1,27 @@
 package com.example.classschedule.service.impl;
 
+import com.alibaba.excel.EasyExcel;
 import com.example.classschedule.data.entity.ClassEntity;
 import com.example.classschedule.data.entity.ClassScheduleEntity;
 import com.example.classschedule.data.entity.SubjectEntity;
 import com.example.classschedule.data.entity.TeacherEntity;
-import com.example.classschedule.mapper.ClassScheduleMapper;
+import com.example.classschedule.data.result.R;
 import com.example.classschedule.data.result.ResultCode;
 import com.example.classschedule.data.result.ResultCodeEnum;
+import com.example.classschedule.data.vo.ClassScheduleVO;
+import com.example.classschedule.mapper.ClassScheduleMapper;
 import com.example.classschedule.service.*;
 import com.example.classschedule.util.StringUtil;
-import com.example.classschedule.data.vo.ClassScheduleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service("classScheduleService")
@@ -159,6 +164,38 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
     @Override
     public ClassScheduleEntity get(Integer singleDoubleWeek, Integer classId, Integer classHourId) {
         return classScheduleMapper.get(singleDoubleWeek, classId, classHourId);
+    }
+
+    @Override
+    public R importData(MultipartFile file) {
+        try {
+            List<Map<Integer, String>> fileValue = EasyExcel.read(file.getInputStream())
+                    .sheet()
+                    .doReadSync();
+            List<ClassScheduleEntity> csList = new ArrayList<>();
+            List<String> testString = new ArrayList<>();
+            log.info("fileValue: {}", fileValue);
+            log.info("fileValue: {}", fileValue.get(0).get(3));
+//            fileValue.forEach(item -> {
+//                List<String> hang = Arrays.asList(item.toString().split(","));
+//                hang.forEach(s -> {
+//                    testString.add(s);
+//                });
+
+//                if (item.toString().contains("\n")) {
+//                    List<String> list = Arrays.asList(item.toString().split("\n"));
+//                    csList.add(ClassScheduleEntity.builder()
+//                            .subjectId(list.get(0))
+//                            .teacherId(list.get(1))
+//                            .build());
+//                }
+//            });
+            log.info("testString: {}", testString);
+            log.info("csList: {}", csList);
+        } catch (IOException e) {
+            return R.error();
+        }
+        return null;
     }
 
 
