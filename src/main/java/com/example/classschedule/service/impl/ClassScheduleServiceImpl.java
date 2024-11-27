@@ -1,6 +1,7 @@
 package com.example.classschedule.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.fastjson.JSONObject;
 import com.example.classschedule.data.entity.ClassEntity;
 import com.example.classschedule.data.entity.ClassScheduleEntity;
 import com.example.classschedule.data.entity.SubjectEntity;
@@ -13,15 +14,14 @@ import com.example.classschedule.mapper.ClassScheduleMapper;
 import com.example.classschedule.service.*;
 import com.example.classschedule.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service("classScheduleService")
@@ -173,25 +173,32 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
                     .sheet()
                     .doReadSync();
             List<ClassScheduleEntity> csList = new ArrayList<>();
-            List<String> testString = new ArrayList<>();
-            log.info("fileValue: {}", fileValue);
-            log.info("fileValue: {}", fileValue.get(0).get(3));
-//            fileValue.forEach(item -> {
-//                List<String> hang = Arrays.asList(item.toString().split(","));
-//                hang.forEach(s -> {
-//                    testString.add(s);
-//                });
-
-//                if (item.toString().contains("\n")) {
-//                    List<String> list = Arrays.asList(item.toString().split("\n"));
-//                    csList.add(ClassScheduleEntity.builder()
-//                            .subjectId(list.get(0))
-//                            .teacherId(list.get(1))
-//                            .build());
-//                }
-//            });
-            log.info("testString: {}", testString);
-            log.info("csList: {}", csList);
+//            log.info("fileValue: {}", fileValue);
+            fileValue.forEach(item -> {
+                List<String> collect = item.values().stream().collect(Collectors.toList());
+                log.info("collect: {}", collect);
+                String className = "";
+                for (String s : collect) {
+                    if (null == s) {
+                        continue;
+                    }
+                    if (s.contains("班")) {
+                        log.info("班级: {}", s);
+                        className = s;
+                        continue;
+                    }
+                    if (s.contains("\n")) {
+                        List<String> list = Arrays.asList(s.toString().split("\n"));
+                        csList.add(ClassScheduleEntity.builder()
+                            .classId(className)
+                            .singleDoubleWeek(0)
+                            .subjectId(list.get(0))
+                            .teacherId(list.get(1))
+                            .build());
+                    }
+                }
+            });
+            log.info("csList: {}", csList.toString());
         } catch (IOException e) {
             return R.error();
         }
